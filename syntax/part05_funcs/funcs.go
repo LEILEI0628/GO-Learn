@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // 在同一个包下不允许存在同名不同参数的方法
 // 有返回值要保证一定返回（每一个分支）
 // GO支持多个返回值
@@ -18,4 +20,24 @@ func Func9() (name string, age int) {
 	//age = 23 // 未使用age时返回 "LEI LEI", 0，字符串返回""
 	// 当返回值中有参数未被使用/赋值时，将返回默认值
 	return // 等价于 return name, age
+}
+
+func Func10(age int, names ...string) {
+	if len(names) > 0 {
+		fmt.Printf("1 %v ", names)
+	}
+	fmt.Printf("%d\n", age)
+}
+
+func Func11(age int, names ...any) {
+	if len(names) > 0 {
+		fmt.Printf("2 %v ", names)
+	}
+	fmt.Printf("%d\n", age)
+}
+
+func main() {
+	name := []string{"A", "B", "C"}
+	Func10(18, name...) // name...表示解切片，传入的其实是三个string
+	Func11(18, name)    // 传入的其实是一个[]string
 }
