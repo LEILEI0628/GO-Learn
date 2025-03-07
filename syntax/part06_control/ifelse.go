@@ -1,4 +1,4 @@
-package part06_control
+package main
 
 import "fmt"
 
