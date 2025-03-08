@@ -42,6 +42,7 @@ func ForRange() {
 	for i := range arr { // 省略index写法：_, v := range arr
 		fmt.Printf("%d:%d ", i, arr[i])
 	}
+	fmt.Println()
 
 	// Map
 	m := map[int]string{1: "a", 2: "b", 3: "c"} // Map的顺序是随机的
@@ -50,5 +51,31 @@ func ForRange() {
 	}
 	fmt.Println()
 
-	// 不要对迭代参数取地址！
+	// 不要对迭代参数（u）取地址！（新版本可以）
+	users := []user{
+		{name: "AAA"},
+		{name: "BBB"},
+	}
+	userMap := make(map[string]*user)
+	for _, u := range users {
+		userMap[u.name] = &u
+		fmt.Printf("%p\n", &u)
+	}
+	fmt.Printf("%v\n", userMap)
+
+	// 这样写可以
+	userMap1 := make(map[string]*user)
+	for k, u := range users {
+		userMap1[u.name] = &users[k]
+		fmt.Printf("%p\n", &users[k])
+	}
+	fmt.Printf("%v\n", userMap1)
+}
+
+type user struct {
+	name string
+}
+
+func main() {
+	ForRange()
 }
