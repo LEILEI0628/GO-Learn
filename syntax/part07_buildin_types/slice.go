@@ -25,9 +25,11 @@ func Slice() {
 }
 
 func SubSlice() {
-
+	s1 := []int{1, 2, 3, 4, 5, 6}
+	s2 := s1[1:3] // 左闭右开，容量为[start:]（从start开始到父切片原本的底层数组的元素个数结束，即包括原数组后面几位的cap）
+	fmt.Printf("%v, len=%d, cap=%d\n", s2, len(s2), cap(s2))
 }
 
 func main() {
-	Slice()
+	SubSlice()
 }
