@@ -9,6 +9,9 @@ func NewUser() {
 
 	up := &User{} // up是指针
 	//up := new(User) // 不推荐使用此种方式
+	// 指针也可以调用接收器方法，GO会自动解引用
+	up.changeName("BBB")
+	up.changeAge(18)
 	fmt.Printf("%#v\n", up)
 	fmt.Printf("%#v\n", *up) // 解引用
 
@@ -26,6 +29,7 @@ func NewUser() {
 func ChangeUser() {
 	user := User{Name: "AAA", Age: 18}
 	fmt.Printf("user:%p\n", &user)
+	// 需要初始化user后才能调用changeName等方法
 	user.changeName("BBB")
 	user.changeAge(30)
 

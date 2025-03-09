@@ -1,9 +1,13 @@
 package main
 
+import "time"
+
 type LinkedList struct {
 	head *node
 	tail *node
 	Len  int // 包外可访问
+
+	CreateTime time.Time
 }
 
 func (l LinkedList) Add(index int, value any) {
@@ -16,4 +20,8 @@ func (l *LinkedList) AddV1(index int, value any) {
 
 }
 
-type node struct{}
+type node struct {
+	// 自引用不用指针会编译错误（无法计算大小）
+	prev *node
+	next *node
+}
