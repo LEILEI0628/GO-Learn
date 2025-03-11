@@ -1,5 +1,5 @@
 package diff
 
 func Hello() {
-	println("Hello GO!")
+	fmt.Println("Hello GO!")
 }

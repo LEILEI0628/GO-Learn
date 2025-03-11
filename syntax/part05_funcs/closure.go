@@ -21,12 +21,12 @@ func Closure1() func() int {
 
 func main() {
 	getAge1 := Closure1
-	println(getAge1()()) // 初始化了age变量
-	println(getAge1()())
-	println(getAge1()())
+	fmt.Println(getAge1()()) // 初始化了age变量
+	fmt.Println(getAge1()())
+	fmt.Println(getAge1()())
 
 	getAge2 := Closure1()
-	println(getAge2()) // age变量仍在使用
-	println(getAge2())
-	println(getAge2())
+	fmt.Println(getAge2()) // age变量仍在使用
+	fmt.Println(getAge2())
+	fmt.Println(getAge2())
 }

@@ -25,7 +25,7 @@ func Func9() (name string, age int) {
 func Func10(age int, names ...string) {
 	if len(names) > 0 {
 		fmt.Printf("1 %v ", names)
-		println()
+		fmt.Println()
 	}
 	fmt.Printf("%d\n", age)
 }

@@ -1,7 +1,7 @@
 package main
 
 func Functional1() {
-	println("Functional1")
+	fmt.Println("Functional1")
 }
 
 func UseFunctional1() {
