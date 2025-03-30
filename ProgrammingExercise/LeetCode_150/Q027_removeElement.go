@@ -1,6 +1,6 @@
 package main
 
-// 27. 移除元素
+// 27. 移除元素 https://leetcode.cn/problems/remove-element/?envType=study-plan-v2&envId=top-interview-150
 
 func removeElement(nums []int, val int) int {
 	diff := make([]int, 0, len(nums))
