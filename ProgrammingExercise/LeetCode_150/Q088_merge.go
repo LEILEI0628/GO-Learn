@@ -19,12 +19,12 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	}
 }
 
-func merge1(nums1 []int, m int, nums2 []int, n int) {
+func mergeA1(nums1 []int, m int, nums2 []int, n int) {
 	copy(nums1[m:], nums2) // 合并
 	sort.Ints(nums1)       // 排序
 }
 
-func merge2(nums1 []int, m int, nums2 []int, n int) {
+func mergeA2(nums1 []int, m int, nums2 []int, n int) {
 	sorted := make([]int, 0, m+n)
 	p1, p2 := 0, 0
 	for {
@@ -49,7 +49,7 @@ func merge2(nums1 []int, m int, nums2 []int, n int) {
 	copy(nums1, sorted)
 }
 
-func merge3(nums1 []int, m int, nums2 []int, n int) {
+func mergeA3(nums1 []int, m int, nums2 []int, n int) {
 	for p1, p2, tail := m-1, n-1, m+n-1; p1 >= 0 || p2 >= 0; tail-- {
 		var cur int
 		if p1 == -1 {
