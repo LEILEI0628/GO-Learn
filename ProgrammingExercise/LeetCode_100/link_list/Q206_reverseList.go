@@ -4,12 +4,15 @@ package main
 // 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 
 func reverseList(head *ListNode) *ListNode {
-	if head == nil || head.Next == nil {
+	if head == nil { // 传进来的是个空指针
 		return head
 	}
-	newHead := reverseList(head.Next)
-	head.Next.Next = head
-	head.Next = nil
+	if head.Next == nil { // 到达最后一个节点
+		return head
+	}
+	newHead := reverseList(head.Next) // 1.递归修改剩下节点
+	head.Next.Next = head             // 2.将当前节点的下一个节点的Next指针指向当前节点
+	head.Next = nil                   // 3.将当前节点的Next指针置空
 	return newHead
 }
 
@@ -17,8 +20,8 @@ func reverseList1(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
 	}
-	p, q := head, head.Next
-	head.Next = nil
+	var p *ListNode
+	q := head
 	for q != nil {
 		temp := q.Next
 		q.Next = p
@@ -26,16 +29,4 @@ func reverseList1(head *ListNode) *ListNode {
 		q = temp
 	}
 	return p
-}
-
-func reverseList2(head *ListNode) *ListNode {
-	var prev *ListNode
-	curr := head
-	for curr != nil {
-		next := curr.Next
-		curr.Next = prev
-		prev = curr
-		curr = next
-	}
-	return prev
 }
