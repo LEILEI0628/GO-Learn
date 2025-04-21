@@ -21,3 +21,21 @@ func hasCycle(head *ListNode) bool {
 	}
 	return false
 }
+
+// 方法二：快慢指针
+// 思路及算法
+// 本方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。
+func hasCycle1(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+	slow, fast := head, head.Next
+	for fast != slow {
+		if fast == nil || fast.Next == nil {
+			return false
+		}
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return true
+}
