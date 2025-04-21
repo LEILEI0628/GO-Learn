@@ -18,7 +18,8 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		}
 		for j := k - 1; j >= 0; j-- {
 			q.Next = nodeList[i+j]
-			q = q.Next
+			nodeList[i+j].Next = nil // .Next不置为nil可能会导致环
+			q = nodeList[i+j]
 		}
 	}
 	return head.Next

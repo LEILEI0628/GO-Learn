@@ -41,6 +41,57 @@ func swapPairs1(head *ListNode) *ListNode {
 	return nodeList[1]
 }
 
+// 数组2
+func swapPairs3(head *ListNode) *ListNode {
+	nodeList := make([]*ListNode, 0)
+	p := head
+	for p != nil {
+		nodeList = append(nodeList, p)
+		p = p.Next
+	}
+	result := &ListNode{}
+	q := result
+	for i := 0; i < len(nodeList); i += 2 {
+		if i+1 == len(nodeList) { // 最后仅剩一个元素的情况
+			q.Next = nodeList[i]
+			q = q.Next
+			break
+		}
+		q.Next = nodeList[i+1]
+		nodeList[i+1].Next = nodeList[i]
+		q = nodeList[i]
+	}
+	q.Next = nil
+	return result.Next
+}
+
+// 数组3
+func swapPairs4(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	nodeList := make([]*ListNode, 0)
+	p := head
+	for p != nil {
+		nodeList = append(nodeList, p)
+		p = p.Next
+	}
+	nodeList[1].Next = nodeList[0]
+	p = nodeList[0]
+	for i := 2; i < len(nodeList); i += 2 {
+		if i+1 == len(nodeList) { // 最后仅剩一个元素的情况
+			p.Next = nodeList[i]
+			p = p.Next
+			break
+		}
+		p.Next = nodeList[i+1]
+		nodeList[i+1].Next = nodeList[i]
+		p = nodeList[i]
+	}
+	p.Next = nil
+	return nodeList[1]
+}
+
 func swapPairs2(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
