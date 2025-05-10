@@ -13,7 +13,7 @@ func TestAlternatePrinting(t *testing.T) {
 	wg := sync.WaitGroup{}
 	wg.Add(2)           // 等待两个协程完成
 	chanA <- struct{}{} // 初始化，让A先执行
-	go func() { // 协程A：打印数字
+	go func() {         // 协程A：打印数字
 		defer wg.Done()
 		for i := 1; i < 6; i++ {
 			<-chanA // 等待通道A的信号
@@ -40,7 +40,7 @@ func TestAlternatePrintingUncacheV1(t *testing.T) {
 	chanA := make(chan struct{})
 	chanB := make(chan struct{})
 	wg := sync.WaitGroup{}
-	wg.Add(2) // 等待两个协程完成
+	wg.Add(2)   // 等待两个协程完成
 	go func() { // 协程A：打印数字
 		defer wg.Done()
 		for i := 0; i < 5; i++ {
@@ -71,7 +71,7 @@ func TestAlternatePrintingUncacheV2(t *testing.T) {
 	chanA := make(chan struct{})
 	chanB := make(chan struct{})
 	wg := sync.WaitGroup{}
-	wg.Add(2) // 等待两个协程完成
+	wg.Add(2)   // 等待两个协程完成
 	go func() { // 协程A：打印数字
 		defer wg.Done()
 		for i := 0; i < 5; i++ {
