@@ -1,16 +1,23 @@
-package string
+package array
 
 // 27. 移除元素 https://leetcode.cn/problems/remove-element/?envType=study-plan-v2&envId=top-interview-150
+// 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素。元素的顺序可能发生改变。然后返回 nums 中与 val 不同的元素的数量。
+// 假设 nums 中不等于 val 的元素数量为 k，要通过此题，您需要执行以下操作：
+// 更改 nums 数组，使 nums 的前 k 个元素包含不等于 val 的元素。nums 的其余元素和 nums 的大小并不重要。
+// 返回 k。
 
+// 双指针做法
 func removeElement(nums []int, val int) int {
-	diff := make([]int, 0, len(nums))
-	for _, v := range nums {
-		if v != val {
-			diff = append(diff, v)
+	slow, fast := 0, 0
+	for ; fast < len(nums); fast++ {
+		if nums[fast] != val {
+			if slow != fast {
+				nums[slow] = nums[fast] // 剪枝
+			}
+			slow++
 		}
 	}
-	copy(nums[0:], diff[0:])
-	return len(diff)
+	return slow
 }
 
 func removeElement1(nums []int, val int) int {
