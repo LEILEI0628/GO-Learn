@@ -1,17 +1,15 @@
-package main
+package LinkList
 
 // 24. 两两交换链表中的节点 https://leetcode.cn/problems/swap-nodes-in-pairs/description/?envType=study-plan-v2&envId=top-100-liked
 // 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
 
 func swapPairs(node *ListNode) *ListNode {
 	if node == nil || node.Next == nil {
-		return node
+		return node // 当最后没有节点或仅剩一个节点时，返回节点或nil
 	}
-	result := node.Next
-	p := swapPairs(node.Next.Next)
-	node.Next.Next = node
-	node.Next = p
-
+	result := node.Next                   // 反转后的第一个节点（当前第二个）
+	node.Next = swapPairs(node.Next.Next) // 反转后第二个节点（当前第一个）Next指向后续已经反转完的链表
+	result.Next = node                    // 反转后的第一个节点指向反转后第二个节点
 	return result
 }
 

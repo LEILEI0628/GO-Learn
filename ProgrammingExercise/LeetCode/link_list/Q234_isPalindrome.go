@@ -1,4 +1,4 @@
-package main
+package LinkList
 
 // 234. 回文链表 https://leetcode.cn/problems/palindrome-linked-list/description/?envType=study-plan-v2&envId=top-100-liked
 

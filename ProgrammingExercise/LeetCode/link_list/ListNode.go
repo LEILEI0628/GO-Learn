@@ -1,4 +1,4 @@
-package main
+package LinkList
 
 // ListNode Definition for singly-linked list.
 type ListNode struct {
