@@ -2,17 +2,31 @@ package main // main方法必须要在main包运行
 
 import (
 	"fmt"
-	"unicode/utf8"
 )
 
 func main() { // 无参数，无返回值
-	fmt.Println("Hello GO!")
-	fmt.Println(`HELLO
-GO!`) // ``适用大段文字，可以换行
-	fmt.Println("\"Hello GO!\"")              // 转义
-	fmt.Println(len("你好"))                    // 计算字节长度
-	fmt.Println(utf8.RuneCountInString("你好")) // 计算字符个数，不推荐使用len()除字符编码字节长度
-	a := make([]int, 3, 4)
-	a = append(a, 1)
-	fmt.Printf("%v %d\n", a, a[3])
+	arr := []int{10, 7, 8, 9, 1, 5}
+	quick(arr, 0, len(arr)-1)
+	fmt.Println(arr)
+}
+
+func quick(arr []int, low int, high int) {
+	if low < high {
+		pi := partition(arr, low, high)
+		quick(arr, low, pi-1)
+		quick(arr, pi+1, high)
+	}
+}
+
+func partition(arr []int, low int, high int) int {
+	pi := arr[high]
+	i := low - 1
+	for j := low; j < high; j++ {
+		if arr[j] < pi {
+			i++
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	arr[i+1], arr[high] = arr[high], arr[i+1]
+	return i + 1
 }
